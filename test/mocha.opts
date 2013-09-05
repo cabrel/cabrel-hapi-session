@@ -1,0 +1,6 @@
+--require blanket
+-R spec
+--ui bdd
+--slow 200
+--timeout 10000
+-b

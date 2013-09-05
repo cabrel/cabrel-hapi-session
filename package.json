@@ -1,0 +1,37 @@
+{
+  "name": "cabrel-node-seed",
+  "version": "0.0.0",
+  "description": "cabrel-node-seed ================",
+  "main": "index.js",
+  "scripts": {
+    "start": "CONFIG_LOADER_PATH=config/config.js supervisor index.js",
+    "test": "mocha --recursive",
+    "blanket": {
+      "pattern": "lib,api",
+      "data-cover-never": "node_modules"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/cabrel/cabrel-node-seed.git"
+  },
+  "author": "cabrel@zerklabs.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cabrel/cabrel-node-seed/issues"
+  },
+  "dependencies": {
+    "cabrel-config": "*",
+    "q": "*",
+    "redis": "*",
+    "lodash": "*",
+    "moment": "*",
+    "hiredis": "*",
+    "cabrel-stockpile": "*",
+    "hapi": "*"
+  },
+  "devDependencies": {
+    "expect.js": "*",
+    "blanket": "*"
+  }
+}
