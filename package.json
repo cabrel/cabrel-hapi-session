@@ -28,7 +28,8 @@
     "moment": "*",
     "hiredis": "*",
     "cabrel-stockpile": "*",
-    "hapi": "*"
+    "hapi": "*",
+    "good": "*"
   },
   "devDependencies": {
     "expect.js": "*",
