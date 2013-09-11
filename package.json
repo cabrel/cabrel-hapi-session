@@ -22,17 +22,18 @@
   },
   "dependencies": {
     "cabrel-config": "*",
-    "q": "*",
-    "redis": "*",
+    "cabrel-stockpile": "*",
+    "good": "*",
+    "hapi": "*",
+    "hiredis": "*",
     "lodash": "*",
     "moment": "*",
-    "hiredis": "*",
-    "cabrel-stockpile": "*",
-    "hapi": "*",
-    "good": "*"
+    "q": "*",
+    "redis": "*",
+    "sugar": "*"
   },
   "devDependencies": {
-    "expect.js": "*",
-    "blanket": "*"
+    "blanket": "*",
+    "expect.js": "*"
   }
 }
