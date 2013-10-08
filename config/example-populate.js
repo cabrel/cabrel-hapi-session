@@ -58,8 +58,7 @@ var internals = {
         },
         good: {
           subscribers: {
-            console: ['error', 'log', 'request'],
-            'http://localhost:4000/log': ['request', 'log', 'error']
+            console: ['error', 'log', 'request']
           },
           alwaysMeasureOps: false,
           extendedRequests: false,
@@ -88,24 +87,6 @@ var internals = {
             endpoints: []
           }
         }
-      },
-      route_cache: {
-        Client: {
-          mode: 'client',
-          expiresIn: moment.duration(24, 'h').asMilliseconds()
-        },
-        Server: {
-          mode: 'server',
-          expiresIn: moment.duration(15, 'm').asMilliseconds() // 15 minutes
-        },
-        ServerShort: {
-          mode: 'server',
-          expiresIn: moment.duration(5, 'm').asMilliseconds() // 5 minutes
-        },
-        'default': {
-          mode: 'server',
-          expiresIn: moment.duration(1, 'h').asMilliseconds() // 1 hour
-        }
       }
     },
     smtp: {
@@ -127,33 +108,16 @@ var internals = {
     server: {
       weburi: 'https://www.example.com'
     },
-    hapi: {
-      cache: {
-        engine: 'redis',
-        partition: 'cabrel-node-seed-prod',
-        host: '127.0.0.1',
-        port: 6379
-        // password: 'ppatoaizPqJU66JbgNqc'
-      }
-    },
     mailTemplates: {
-      funnel_web: 'https://www.example.com'
+      app_web: 'https://www.example.com'
     }
   },
   development: {
     server: {
       weburi: 'http://www.example.com'
     },
-    hapi: {
-      cache: {
-        engine: 'redis',
-        partition: 'cabrel-node-seed-dev',
-        host: '127.0.0.1',
-        port: 6379
-      }
-    },
     mailTemplates: {
-      funnel_web: 'http://www.example.com'
+      app_web: 'http://www.example.com'
     }
   }
 };
