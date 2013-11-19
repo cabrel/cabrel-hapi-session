@@ -90,8 +90,38 @@ Q.all([
     internals.server.addRoute(httpEndpoints[ep]);
   });
 }).done(function() {
-  internals.pack.start(function() {
-    console.log('Server started @ %s', internals.server.info.uri);
-  });
+  if (cluster.isMaster) {
+    for (var i = 0; i < numCPUs; i++) {
+      cluster.fork();
+    }
 
+    cluster.on('exit', function(worker, code, signal) {
+      winston.info('cluster worker %s died', worker.process.pid);
+    });
+
+    cluster.on('online', function(worker) {
+      winston.info('cluster worker %s is online', worker.process.pid);
+    });
+
+  } else {
+    internals.pack.start(function() {
+      console.log('Server started @ %s', internals.server.info.uri);
+      internals.server.on('log', function(event, tags) {
+        if (tags.error) {
+          winston.error('Hapi log event', { 'data': event.data, 'tags': tags });
+        }
+      });
+
+      internals.server.on('internal error', function(request, error) {
+        winston.error('Hapi internal error for: ' + request.id, {
+          'error': error,
+          'info': request.info,
+          'auth': request.auth || {}
+        });
+      });
+    });
+  }
+}, function(error) {
+  console.log(error);
+  winston.error('internal error', { 'msg': JSON.stringify(error.message) });
 });
