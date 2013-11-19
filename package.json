@@ -1,7 +1,7 @@
 {
   "name": "cabrel-node-seed",
   "version": "0.0.0",
-  "description": "cabrel-node-seed ================",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "start": "CONFIG_LOADER_PATH=config/config.js supervisor index.js",

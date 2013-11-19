@@ -34,8 +34,7 @@ var internals = {
   core: {
     server: {
       host: '127.0.0.1',
-      port: 3000,
-      debug: false
+      port: 3000
     },
     crypt: crypt_seeds,
     hapi: {
@@ -46,22 +45,23 @@ var internals = {
           request: ['error', 'uncaught']
         },
         payload: {
-          maxBytes: (1024 * 1024) * 4 // 4mb
+          maxBytes: (1024 * 1024) * 10, // 10mb
+          multipart: {
+            mode: 'file',
+            maxFieldBytes: (1024 * 1024) * 10
+          }
         },
         timeout: {
           client: false
         }
       },
       plugins: {
-        lout: {
-          endpoint: '/api/docs'
-        },
         good: {
           subscribers: {
             console: ['error', 'log', 'request']
           },
           alwaysMeasureOps: false,
-          extendedRequests: false,
+          extendedRequests: true,
           leakDetection: true,
           maxLogSize: (1024 * 1024) * 5 // 5mb
         },
@@ -77,17 +77,18 @@ var internals = {
             iterations: 2
           }
         },
-        tv: {
-          webSocketPort: 8000,
-          debugEndpoint: '/debug/console',
-          queryKey: 'debug'
-        },
         'cabrel-hapi-json': {
           exclude: {
             endpoints: []
           }
         }
       }
+    },
+    logging: {
+      host: '127.0.0.1',
+      port: 6379,
+      db: 2,
+      facility: 'node-seed'
     },
     smtp: {
       host: '127.0.0.1',
@@ -122,44 +123,14 @@ var internals = {
   }
 };
 
-if (process.env['PRODUCTION']) {
-  console.log('** SETTING PRODUCTION VALUES **');
-  var productionKeys = _.keys(internals.production);
+// compile the config
+internals.core = loader.generateConfig(internals.core,
+    internals.production,
+    internals.development);
 
-  _.each(productionKeys, function(key) {
-    if (typeof internals.production[key] === 'object') {
-      _.defaults(internals.core[key], internals.production[key]);
-    } else {
-      internals.core[key] = internals.production[key];
-    }
-  });
 
-  client = loader.buildRedisClient();
-} else {
-  console.log('** SETTING DEVELOPMENT VALUES **');
-  var developmentKeys = _.keys(internals.development);
-
-  _.each(developmentKeys, function(key) {
-    if (typeof internals.development[key] === 'object') {
-      _.defaults(internals.core[key], internals.development[key]);
-    } else {
-      internals.core[key] = internals.development[key];
-    }
-
-  });
-}
-
-loader.set(internals.core, true, 'config').then(function(result) {
-  console.log('Done setting config values');
-}).then(function() {
-  return loader.get('crypt', 'csrf');
-}).then(function(apiKey) {
-  if (apiKey === crypt_seeds.csrf) {
-    console.log('Config updated successfully');
-  } else {
-    throw new Error('Configuration failed to update');
-  }
-}).done(function() {
+loader.set(internals.core, true).done(function(result) {
+  console.log('Done');
   process.exit(0);
 }, function(error) {
   console.log('Error');
