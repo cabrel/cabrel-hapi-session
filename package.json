@@ -1,7 +1,7 @@
 {
-  "name": "cabrel-node-seed",
-  "version": "0.0.0",
-  "description": "",
+  "name": "cabrel-hapi-session",
+  "version": "1.0.0",
+  "description": "Wrapper around frequently used methods for hapi to store/fetch sessions",
   "main": "index.js",
   "scripts": {
     "start": "CONFIG_LOADER_PATH=config/config.js supervisor index.js",
@@ -13,12 +13,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/cabrel/cabrel-node-seed.git"
+    "url": "git://github.com/cabrel/cabrel-hapi-session.git"
   },
   "author": "cabrel@zerklabs.com",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/cabrel/cabrel-node-seed/issues"
+    "url": "https://github.com/cabrel/cabrel-hapi-session/issues"
   },
   "dependencies": {
     "cabrel-config": "*",
