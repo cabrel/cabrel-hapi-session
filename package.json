@@ -30,7 +30,11 @@
     "moment": "*",
     "q": "*",
     "redis": "*",
-    "sugar": "*"
+    "request": "*",
+    "sugar": "*",
+    "node-uuid": "*",
+    "winston": "*",
+    "cabrel-winston-redis": "*"
   },
   "devDependencies": {
     "blanket": "*",
