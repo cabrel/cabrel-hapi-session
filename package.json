@@ -1,6 +1,6 @@
 {
   "name": "cabrel-hapi-session",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Wrapper around frequently used methods for hapi to store/fetch sessions",
   "main": "index.js",
   "scripts": {
