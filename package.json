@@ -34,7 +34,8 @@
     "sugar": "*",
     "node-uuid": "*",
     "winston": "*",
-    "cabrel-winston-redis": "*"
+    "cabrel-winston-redis": "*",
+    "cabrel-crypto-wrapper": "~0.1.0"
   },
   "devDependencies": {
     "blanket": "*",
