@@ -1,5 +1,5 @@
-var expect = require('expect.js'),
-    sessions = require('../');
+var expect = require('chai').expect;
+var sessions = require('../');
 
 
 describe('cabrel-hapi-session', function() {
@@ -18,8 +18,8 @@ describe('cabrel-hapi-session', function() {
   describe('#fetchSession', function() {
     it('returns session object', function(done) {
       sessions.fetchSession(sessionId, 'password123').done(function(result) {
-        expect(result).to.be.an(Object);
-        expect(result.a).to.be(1);
+        expect(result).to.be.an.instanceof(Object);
+        expect(result.a).to.equal(1);
         done();
       });
     });
@@ -30,7 +30,7 @@ describe('cabrel-hapi-session', function() {
       sessions.removeSession(sessionId).then(function() {
         return sessions.fetchSession(sessionId, 'password123');
       }).done(null, function(error) {
-        expect(error).to.be.an(Error);
+        expect(error).to.be.an.instanceof(Error);
         done();
       });
     });

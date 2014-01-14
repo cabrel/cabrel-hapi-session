@@ -1,6 +1,6 @@
 {
   "name": "cabrel-hapi-session",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Wrapper around frequently used methods for hapi to store/fetch sessions",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
     "cabrel-config": "*",
     "cabrel-stockpile": "*",
     "good": "*",
-    "hapi": "*",
+    "hapi": "1.x.x",
     "hiredis": "*",
     "lodash": "*",
     "moment": "*",
@@ -35,10 +35,12 @@
     "node-uuid": "*",
     "winston": "*",
     "cabrel-winston-redis": "*",
-    "cabrel-crypto-wrapper": "~0.1.0"
+    "cabrel-crypto-wrapper": "*",
+    "when": "*"
   },
   "devDependencies": {
     "blanket": "*",
-    "expect.js": "*"
+    "expect.js": "*",
+    "chai": "*"
   }
 }
