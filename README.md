@@ -1,7 +1,7 @@
 cabrel-hapi-session
 ================
 
-#UNMAINTAINED
+#NO LONGER MAINTAINED
 
 Stores a v4 UUID in a cookie and uses that ID to store session data in Redis.
 
